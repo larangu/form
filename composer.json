@@ -1,0 +1,33 @@
+{
+    "name": "larangu/form-ng",
+    "description": "The Laravel's Angular 2 Form's wrapper.",
+    "authors": [
+        {
+            "name": "Filip Koblański",
+            "email": "filip.koblanski@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.3.*"
+    },
+    "autoload": {
+        "classmap": [
+            "tests"
+        ],
+        "psr-4": {
+            "Larangu\\FormNg\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
