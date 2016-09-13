@@ -6,6 +6,6 @@ class FormNgFacade extends Facade
 {
     public static function getFacadeAccessor()
     {
-        return 'formNgService';
+        return 'formBuilderNg';
     }
 }

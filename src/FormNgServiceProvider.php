@@ -1,10 +1,18 @@
 <?php namespace Larangu\FormNg;
 
 use Illuminate\Support\ServiceProvider;
-use Larangu\FormNg\Services\FormNgService;
+use Larangu\FormNg\Contracts\FormBuilder;
+use Larangu\FormNg\Form\BuilderNg;
 
 class FormNgServiceProvider extends ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
     /**
      * Bootstrap the application services.
      *
@@ -12,12 +20,8 @@ class FormNgServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!$this->app->routesAreCached()) {
-            require __DIR__.'/Http/routes.php';
-        }
-
         $this->publishes([
-            __DIR__ . '/../config/config.php' => config_path('finance.php'),
+            __DIR__ . '/../config/config.php' => config_path('form-ng.php'),
         ], 'config');
 
         $this->publishes([
@@ -25,8 +29,6 @@ class FormNgServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'form-ng');
-
-        $this->registerAliases($this->morphAliases);
     }
 
     /**
@@ -38,8 +40,12 @@ class FormNgServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'form-ng');
 
-        $this->app->singleton('formNgService', function () {
-            return app(FormNgService::class);
+        $this->app->singleton(FormBuilder::class, function () {
+            return $this->app->make(BuilderNg::class);
+        });
+
+        $this->app->singleton('formBuilderNg', function () {
+            return $this->app->make(FormBuilder::class);
         });
     }
 }
