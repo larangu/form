@@ -1,4 +1,4 @@
-<div class="{{$containerClass or 'form-group'}}" [ngClass]="{has-error: ({{$name}}.errors && ({{$name}}.dirty || {{$name}}.touched)}">
+<div class="{{$containerClass or 'form-group'}}" @ngClass(Form::getHasErrors()))>
     <div class="col-md-10 col-md-offset-2">
         <label class="checkbox">
             <input type="checkbox"

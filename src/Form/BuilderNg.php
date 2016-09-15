@@ -51,6 +51,11 @@ class BuilderNg implements FormBuilder
         $this->resetForm();
     }
 
+    public function getHasErrors($name)
+    {
+        return ['has-error' => "$name.errors && ({$name}.dirty || {$name}.touched)}"];
+    }
+
     public function __call($method, $parameters)
     {
         try {

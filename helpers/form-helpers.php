@@ -11,7 +11,7 @@ if (!function_exists('formNg')) {
      */
     function formNg($model = null, array $data = [])
     {
-            if (is_null($model)) {
+        if (is_null($model)) {
             return app('formBuilderNg');
         }
 
