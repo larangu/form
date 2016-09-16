@@ -1,10 +1,10 @@
-<div class="{{$containerClass or 'form-group'}}" [ngClass]="{has-error: ({{$name}}.errors && ({{$name}}.dirty || {{$name}}.touched)}">
+<div class="{{$containerClass or 'form-group'}}" @ngClass(Form::getHasErrors()))>
     <label class="col-md-2 control-label">{{$label}}</label>
 
     <div class="col-md-10">
         <input type="{{$type or 'text'}}"
                class="{{$inputClass or 'form-control'}}"
-               [(ngModel)]="{{$model}}.{{$name}}"
+               @ngModel($model . '.' . $name)
                name="{{$name}}"
         @if(isset($rules) && ($nodeRule = array_get($rules, $name)) && ($nodeRules = explode('|', $nodeRule)))
             @foreach($nodeRules as $nodeRule)

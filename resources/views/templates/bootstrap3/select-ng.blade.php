@@ -3,7 +3,7 @@
     <div class="col-md-10">
         <select type="{{$type or 'text'}}"
                 class="{{$inputClass or 'form-control'}}"
-                [ngModel]="{{$model}}.{{$name}}"
+                @ngModel($model . '.' . $name)
                 name="{{$name}}"
         @if(isset($rules) && ($nodeRule = array_get($rules, $name)) && ($nodeRules = explode('|', $nodeRule)))
             @foreach($nodeRules as $nodeRule)
