@@ -29,3 +29,16 @@ if (!function_exists('formNg')) {
         return app('formBuilderNg')->$model(...$data);
     }
 }
+
+if (!function_exists('formNgClose')) {
+
+    /**
+     * Form ng close tag helper function.
+     *
+     * @return \Larangu\FormNg\Contracts\FormBuilder|string
+     */
+    function formNgClose()
+    {
+        return app('formBuilderNg')->close();
+    }
+}

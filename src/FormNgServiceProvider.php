@@ -29,6 +29,8 @@ class FormNgServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'form-ng');
+
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -46,6 +48,20 @@ class FormNgServiceProvider extends ServiceProvider
 
         $this->app->singleton('formBuilderNg', function () {
             return $this->app->make(FormBuilder::class);
+        });
+    }
+
+    /**
+     * Registering blade directives for Angular generator.
+     */
+    protected function registerBladeDirectives()
+    {
+        \Blade::directive('formNg', function ($model = null, $data = []) {
+            return formNg($model, $data);
+        });
+
+        \Blade::directive('formNgClose', function () {
+            return formNgClose();
         });
     }
 }
